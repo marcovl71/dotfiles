@@ -24,3 +24,5 @@
 	excludesfile = /home/marcovl/.gitignore-global
 [credential]
 	helper = cache
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
