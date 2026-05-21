@@ -1,0 +1,11 @@
+OS cruft
+###############
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# vim
+###############
+.*.swp
+Session.vim
+

@@ -1,0 +1,24 @@
+[user]
+	name = marcovl71
+        email = marco@lordsith.net
+[alias]
+        hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+        co = checkout
+        ci = commit
+        st = status
+        br = branch
+        last = log -1 HEAD
+        di = diff
+	sw = switch
+	rs = restore
+	lg = log --color --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
+[color]
+        ui = true
+[push]
+        default = simple
+[http]
+        sslVerify = false
+[init]
+	defaultBranch = main
+[core]
+	excludesfile = /home/marcovl/.gitignore-global
