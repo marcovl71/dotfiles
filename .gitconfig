@@ -22,3 +22,5 @@
 	defaultBranch = main
 [core]
 	excludesfile = /home/marcovl/.gitignore-global
+[credential]
+	helper = cache
