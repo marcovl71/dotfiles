@@ -27,3 +27,7 @@
 	helper = cache
 [url "ssh://git@github.com"]
 	insteadOf = https://github.com
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
