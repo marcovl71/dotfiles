@@ -1,13 +1,27 @@
+" open/close folds: za
+" to create a new fold: shift-v over the lines needing to be folded, then 'zf'
+
+" Settings{{{
 set nocompatible                  " Must come first because it changes other options.
 syntax enable                     " Turn on syntax highlighting.
+syntax on
 filetype plugin on                " Turn on file type detection.
+filetype indent plugin on         " Turn on file type detection.
+let mapleader = ","
+set number
+set relativenumber
+set expandtab                     " converts tab to spaces as whitespace
+set path+=**                      " search directories upwards and downwards
 set showcmd                       " Display incomplete commands.
 set showmode                      " Display the mode you're in.
 set backspace=indent,eol,start    " Intuitive backspacing.
 set hidden                        " Handle multiple buffers better.
 set wildmenu                      " Enhanced command line completion.
-set wildmode=list:longest         " Complete files like a shell.
+"set wildmode=list:longest         " Complete files like a shell.
 set incsearch                     " Highlight matches as you type.
+set smartcase                     " automatically switch to case-sensitive when using uppercase
+set ignorecase
+set cursorline
 set hlsearch                      " Highlight matches.
 set wrap                          " Turn on line wrapping.
 set modeline                      " Allow per file config
@@ -22,9 +36,9 @@ set bg=dark
 " autocmd Filetype yaml setlocal tabstop=2 ai colorcolumn=1,3,5,7,9,80
 
 " enable yaml syntax color
-au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim"}}}
 
-"statusline setup
+"statusline setup{{{
 set laststatus=2
 set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
 set statusline=%t       "tail of the filename
@@ -38,10 +52,17 @@ set statusline+=%y      "filetype
 set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+set statusline+=\ %P    "percent through file}}}}}}
+ 
+" normal maps{{{
 
+" change pwd to directory of current file
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <space>r :set relativenumber!<CR>
+nnoremap <space>n :set number!<CR>
+"
 " folding: met shift-tab in- en uitklappen
-noremap <silent> <s-tab> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
+nnoremap <silent> <s-tab> :exe 'silent! normal! za'.(foldlevel('.')?'':'l')<cr>
 if has("folding") == 1
         set foldmethod=marker
         let fortran_fold = 1
@@ -52,9 +73,16 @@ if has("folding") == 1
         let sh_fold_enabled = 1
 endif
 " =====================================
+"}}}
 
-" =====================================
-" DNS serial increment script, use '6 shift-g = u' key combo to raise serial
+" Automatically save folds{{{
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * silent! mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END"}}}
+
+" DNS serial increment script, use '6 shift-g = u' key combo to raise serial{{{
 " quickly and safely
 map =u :call SerialUp()<cr>
 function! SerialUp()
@@ -65,4 +93,7 @@ function! SerialUp()
                 let newserial = newserial + 1
         endwhile
         exe 's#[0-9]\{10\}#'.newserial."#"
-endfunction
+endfunction"}}}
+
+" Fixes mouse issues in Alacritty Terminal{{{
+set ttymouse=sgr"}}}
