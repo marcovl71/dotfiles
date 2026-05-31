@@ -1,0 +1,7 @@
+// --- Hardware & Power Management
+// cycles power profiles: balanced > performance > power-saver
+// includes native noctalia desktop notifications
+
+binds {
+        Mod+P { spawn-sh "noctalia msg power-cycle"; }
+}
