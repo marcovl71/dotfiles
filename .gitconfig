@@ -1,7 +1,7 @@
 [user]
 	name = marcovl71
         email = marco@lordsith.net
-	signingkey = 8580E6CB
+	signingkey = E850CFBE7CC91512
 [alias]
         hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
         co = checkout
